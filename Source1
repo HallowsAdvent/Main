@@ -43,9 +43,11 @@ if _G.Celebrial_nonYieldLoaded1 ~= true then
 		B.Assets.Sections = {
 
 			Input = {
-				i = wd.Combat:AddSection('Verification')	
+				i = wd.Input:AddSection('Verification')	
 			},
 		}
+
+		--  //  0  \\  --
 
 		local Sections = B.Assets.Sections
 		local ReplicatedStorage = game:GetService("ReplicatedStorage")
