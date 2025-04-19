@@ -54,28 +54,48 @@ if _G.Celebrial_nonYieldLoaded1 ~= true then
 		local PlayerService = game:GetService("Players")
 		local RunService = game:GetService("RunService")
 		local Player = PlayerService.LocalPlayer
-		
-		local dat_key = ""
-		
-		Sections.Input.i:AddLabel('Verification')
 
-		Sections.Input.i:AddTextBox('Enter key there',nil,false,5,function(a) 
-			dat_key = a
-		end)
-		
-		Sections.Input.i:AddButton('Verify', false, nil, function() 
-			local id = 'https://raw.githubusercontent.com/HallowsAdvent/guard/refs/heads/main/G'
-			local answer = loadstring(game:HttpGet(id)).execute(dat_key)
-			
+		local dat_key = ""
+		local c_turn = true
+		local is_validated = false
+
+		local verify = function()
+			local id = 'https://raw.githubusercontent.com/HallowsAdvent/guard/refs/heads/main/G11'
+			local answer = loadstring(game:HttpGet(id))()
+
 			if answer then
 				if type(answer) == "table" then
-					if answer.tt == true then
+					if answer.DataText2 == true then
+						c_turn = false
+						is_validated = true
 						_G.IsScreenGui_toggler_actor:Destroy()
 						task.wait(1)
-						loadstring(game:HttpGet(answer.l))()
+                        loadstring(game:HttpGet(answer.l))()
 					end
 				end
+			end
+		end	
+
+		Sections.Input.i:AddTextBox('Enter key there', nil, nil,5,function(a) 
+			dat_key = a
+		end)
+
+		Sections.Input.i:AddLabel('Press Enter To Verify')
+
+		game.UserInputService.InputBegan:Connect(function(I, P)
+			if I.KeyCode == Enum.KeyCode.Return and c_turn == true then
+				coroutine.wrap(function()
+					c_turn = false
+					wait(3)
+					if is_validated ~= true then
+						c_turn = true
+					end
+				end)()
+				_G.keyaccess_celebrial = dat_key
+				task.wait()
+				verify()
 			end
 		end)
 	end)
 end
+
