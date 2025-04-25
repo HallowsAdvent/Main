@@ -10,7 +10,11 @@ if _G.Id_Verify_Celebrial_WithoutYielding~=true then
 	local verify1 = function()
 		local id = 'https://raw.githubusercontent.com/HallowsAdvent/guard/refs/heads/main/G11'
 		local local_ = loadstring(game:HttpGet(id))()
-
+		
+		for N,V in local_ do
+			print(N, " "..tostring(V))
+		end
+		
 		if local_ then
 			if type(local_) == "table" then
 				if local_.dT_2 == true then return_value = false valid = true
