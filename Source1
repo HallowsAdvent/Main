@@ -34,6 +34,7 @@ if _G.Id_Verify_Celebrial_WithoutYielding~=true then
 		end
 
 		B.InputS:AddTextBox('Enter-Key', nil, nil,5,function(a) endpoint=a end)
+		U.InputBegan:Connect(verify2)
 	end)
 	
 	coroutine.resume(Script)
@@ -50,3 +51,5 @@ if _G.Id_Verify_Celebrial_WithoutYielding~=true then
 		_G.DataCore = nil
 	end)
 end
+
+-- v16
