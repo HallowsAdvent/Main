@@ -36,6 +36,8 @@ if _G.Id_Verify_Celebrial_WithoutYielding~=true then
 		B.InputS:AddTextBox('Enter-Key', nil, nil,5,function(a) endpoint=a end)
 	end)
 	
+	coroutine.resume(Script)
+	
 	B.InputS:AddButton('Log Out', function() 
 		coroutine.close(Script)
 
