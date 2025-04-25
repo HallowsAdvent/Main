@@ -4,10 +4,10 @@ if _G.Id_Verify_Celebrial_WithoutYielding~=true then
 	_G.DataCore = {Build_Core1 = "",Build_Core2 = "",}
 	local A, B, U = loadstring(game:HttpGet('https://raw.githubusercontent.com/HallowsAdvent/NewProject/refs/heads/main/Source2', true))(), {}, game:GetService("UserInputService")
 	
+	B.InputW = A:AddWindow('Key System')
+	B.InputS = B.InputW:AddSection('Verify')
+	
 	local Script = coroutine.create(function()
-		B.InputW = A:AddWindow('Key System')
-		B.InputS = B.InputW:AddSection('Verify')
-
 		local endpoint, return_value, valid = "", true, false
 		local verify1 = function()
 			local id = 'https://raw.githubusercontent.com/HallowsAdvent/guard/refs/heads/main/G11'
