@@ -1,101 +1,32 @@
-if _G.Celebrial_nonYieldLoaded1 ~= true then
-	_G.Celebrial_nonYieldLoaded1 = true
-	task.spawn(function()
-		local ScriptData = {
+if _G.Id_Verify_Celebrial_WithoutYielding~=true then
+	_G.Id_Verify_Celebrial_WithoutYielding=true
+	_G.DataCore = {Build_Core1 = "",Build_Core2 = "",}
+	local A, B, U = loadstring(game:HttpGet('https://raw.githubusercontent.com/HallowsAdvent/NewProject/refs/heads/main/Source2', true))(), {}, game:GetService("UserInputService")
+	
+	B.InputW = A:AddWindow('Key System')
+	B.InputS = B.InputW:AddSection('Verify')
+	
+	local endpoint, return_value, valid = "", true, false
+	local verify1 = function()
+		local id = 'https://raw.githubusercontent.com/HallowsAdvent/guard/refs/heads/main/G11'
+		local local_ = loadstring(game:HttpGet(id))()
 
-			ScriptLevel = 		"",
-			ScriptBuild = 		"",
-
-			ScriptDaysL =		_G.daysLeft_Core,
-			ScriptCalls =		"",	
-
-			ScriptSpprt =		"",
-			ScriptSVrsn =		"",
-		}
-
-		local A = 'https://raw.githubusercontent.com/HallowsAdvent/NewProject/refs/heads/main/Source2'
-		local B = {}
-
-		B.Plugins = {}
-		B.Scripts = {}
-		B.Assets =  {}
-
-		B.Plugins.__Commas = function(data) local vdata = data local gdata while game do vdata, gdata = string.gsub(vdata, '^(-?%d+)(%d%d%d)', '%1,%2') if (gdata == 0) then break end end return vdata end
-
-		local C = {
-
-			Build_Core1 = "",
-			Build_Core2 = "",
-		}
-
-		local Init = function(DataCore)
-			_G.DataCore = DataCore
-		end
-
-		if type(A) == "string" and string.find(string.lower(A), "githubusercontent") then Init(C) A = loadstring(game:HttpGet(A, true))() end
-
-		B.Assets.Windows = {
-
-			Input = A:AddWindow('Input'),
-		}
-		local wd = B.Assets.Windows
-
-		B.Assets.Sections = {
-
-			Input = {
-				i = wd.Input:AddSection('Verification')	
-			},
-		}
-
-		--  //  0  \\  --
-
-		local Sections = B.Assets.Sections
-		local ReplicatedStorage = game:GetService("ReplicatedStorage")
-		local PlayerService = game:GetService("Players")
-		local RunService = game:GetService("RunService")
-		local Player = PlayerService.LocalPlayer
-
-		local dat_key = ""
-		local c_turn = true
-		local is_validated = false
-
-		local verify = function()
-			local id = 'https://raw.githubusercontent.com/HallowsAdvent/guard/refs/heads/main/G11'
-			local answer = loadstring(game:HttpGet(id))()
-
-			if answer then
-				if type(answer) == "table" then
-					if answer.DataText2 == true then
-						c_turn = false
-						is_validated = true
-						_G.IsScreenGui_toggler_actor:Destroy()
-						task.wait(1)
-                        loadstring(game:HttpGet(answer.l))()
-					end
+		if local_ then
+			if type(local_) == "table" then
+				if local_.dT_2 == true then return_value = false valid = true
+					_G.IsScreenGui_toggler_actor:Destroy() task.wait(1) loadstring(game:HttpGet(local_.dT_4))()
 				end
 			end
-		end	
-
-		Sections.Input.i:AddTextBox('Enter key there', nil, nil,5,function(a) 
-			dat_key = a
-		end)
-
-		Sections.Input.i:AddLabel('Press Enter To Verify')
-
-		game.UserInputService.InputBegan:Connect(function(I, P)
-			if I.KeyCode == Enum.KeyCode.Return and c_turn == true then
-				coroutine.wrap(function()
-					c_turn = false
-					wait(3)
-					if is_validated ~= true then
-						c_turn = true
-					end
-				end)()
-				_G.keyaccess_celebrial = dat_key
-				task.wait()
-				verify()
-			end
-		end)
-	end)
+		end
+	end
+	
+	local verify2 = function(i, p)
+		if i.KeyCode == Enum.KeyCode.Return then
+			coroutine.wrap(function() return_value = false wait(2) if valid ~= true then return_value = true end end)()
+			_G.Cel_memoryT = endpoint task.wait() verify1()
+		end
+	end
+	
+	B.InputS:AddTextBox('Enter-Key', nil, nil,5,function(a) endpoint=a end)
+	U.InputBegan:Connect(verify2)
 end
-
