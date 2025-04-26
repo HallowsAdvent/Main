@@ -27,14 +27,19 @@ if _G.Id_Verify_Celebrial_WithoutYielding~=true then
 		end
 
 		local verify2 = function(i, p)
-			if i.KeyCode == Enum.KeyCode.Return then
+			if i.KeyCode == Enum.KeyCode.Return and return_value == true and valid ~= true then
 				coroutine.wrap(function() return_value = false wait(2) if valid ~= true then return_value = true end end)()
 				_G.Cel_memoryT = endpoint task.wait() verify1()
 			end
 		end
 
+		B.InputS:AddButton('Verify', function() 
+			coroutine.wrap(function() return_value = false wait(2) if valid ~= true then return_value = true end end)()
+			_G.Cel_memoryT = endpoint task.wait() verify1()
+		end)
+
 		B.InputS:AddTextBox('Enter-Key', nil, nil,5,function(a) endpoint=a end)
-		U.InputBegan:Connect(verify2)
+		--U.InputBegan:Connect(verify2)
 	end)
 	
 	coroutine.resume(Script)
